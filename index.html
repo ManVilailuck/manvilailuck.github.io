@@ -6,8 +6,41 @@
     <title>Man Vilailuck</title>
     <script type="module" crossorigin src="/assets/index-DYMJlAjj.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DscjKKw6.css">
+    <!-- Custom theme and decrypted-text component -->
+    <link rel="stylesheet" href="/assets/custom-theme.css">
+    <script type="module" src="/assets/decrypted-text.js" defer></script>
   </head>
   <body>
+    <div class="container" style="max-width:1100px;margin:24px auto 48px;">
+      <header class="header">
+        <div class="logo">MV</div>
+        <div>
+          <div class="title">Man Vilailuck</div>
+          <div class="subtitle">Design, code, and nicely decrypted text ✨</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:12px;align-items:center">
+          <button class="btn">Contact</button>
+          <button class="btn secondary">Projects</button>
+        </div>
+      </header>
+
+      <section class="card">
+        <p class="lead">Hover or scroll to reveal: </p>
+        <h1 style="margin:12px 0;color:var(--revealed);font-size:2rem">
+          <decrypted-text text="Hover to decrypt — a modern dark design" speed="35" max-iterations="25" animate-on="hover"></decrypted-text>
+        </h1>
+        <p style="color:var(--muted);margin-top:8px">You can also animate on view further down the page.</p>
+      </section>
+
+      <section class="card" style="padding-top:36px;padding-bottom:60px;">
+        <p class="lead">Animate-on-view example:</p>
+        <div style="height:220px"></div>
+        <h2 style="color:var(--revealed);font-size:1.4rem">
+          <decrypted-text text="This text animates when in view" speed="40" max-iterations="28" animate-on="view" reveal-direction="center"></decrypted-text>
+        </h2>
+      </section>
+    </div>
+
     <div id="root"></div>
   </body>
 </html>
