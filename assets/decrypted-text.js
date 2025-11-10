@@ -36,8 +36,11 @@ class DecryptedText extends HTMLElement {
     `;
     this._root.appendChild(style);
 
-    this._current = this._text.split('');
-    this._revealed = new Set();
+  // parse text into characters and mark encrypted regions (text inside [ ])
+  // display will omit the brackets and only encrypt the inner content
+  this._chars = []; // array of { char: 'a', encrypted: true|false }
+  this._parseTextForBrackets();
+  this._revealed = new Set(); // indices into this._chars that have been revealed
     this._isAnimating = false;
     this._interval = null;
     this._iteration = 0;
@@ -73,31 +76,39 @@ class DecryptedText extends HTMLElement {
   attributeChangedCallback(name, oldVal, newVal) {
     if (name === 'text') {
       this._text = newVal || '';
-      this._current = this._text.split('');
+      this._parseTextForBrackets();
+      this._revealed = new Set();
       this._renderScrambled();
     }
   }
 
   _getNextIndex() {
-    const n = this._text.length;
+    // choose next index among only encrypted characters
+    const encIndices = this._encryptedIndices;
+    const m = encIndices.length;
+    if (m === 0) return -1;
     switch (this._revealDirection) {
-      case 'end': return n - 1 - this._revealed.size;
+      case 'end':
+        return encIndices[m - 1 - this._revealed.size] ?? encIndices[m - 1];
       case 'center': {
-        const mid = Math.floor(n / 2);
+        const mid = Math.floor(m / 2);
         const off = Math.floor(this._revealed.size / 2);
-        return this._revealed.size % 2 === 0 ? mid + off : mid - off - 1;
+        const pick = this._revealed.size % 2 === 0 ? mid + off : mid - off - 1;
+        return encIndices[Math.max(0, Math.min(m - 1, pick))];
       }
       case 'start':
       default:
-        return this._revealed.size;
+        return encIndices[this._revealed.size] ?? encIndices[0];
     }
   }
 
   _renderScrambled() {
     const chars = this._characters.split('');
-    const out = this._current.map((c, i) => {
+    const out = this._chars.map((item, i) => {
+      const c = item.char;
+      if (!item.encrypted) return this._escape(c);
       if (c === ' ') return ' ';
-      if (this._revealed.has(i)) return `<span class="rev">${this._escape(this._text[i])}</span>`;
+      if (this._revealed.has(i)) return `<span class="rev">${this._escape(c)}</span>`;
       const r = chars[Math.floor(Math.random() * chars.length)];
       return `<span class="enc">${this._escape(r)}</span>`;
     }).join('');
@@ -112,17 +123,23 @@ class DecryptedText extends HTMLElement {
     this._iteration = 0;
     if (this._interval) clearInterval(this._interval);
     this._interval = setInterval(() => {
-      if (this._revealed.size < this._text.length) {
-        const i = this._getNextIndex();
-        this._revealed.add(i);
-        this._renderScrambled();
-      }
+        // reveal next encrypted character
+        const next = this._getNextIndex();
+        if (next !== -1 && !this._revealed.has(next)) {
+          this._revealed.add(next);
+          this._renderScrambled();
+        }
       this._iteration++;
-      if (this._iteration >= this._maxIterations || this._revealed.size >= this._text.length) {
+      // stop when all encrypted characters are revealed or we hit iteration cap
+      if (this._iteration >= this._maxIterations || this._revealed.size >= this._encryptedIndices.length) {
         clearInterval(this._interval);
         this._interval = null;
         this._isAnimating = false;
-        this._display.innerHTML = this._text.split('').map(c => c === ' ' ? ' ' : `<span class="rev">${this._escape(c)}</span>`).join('');
+        // fully reveal encrypted characters, keep non-encrypted as-is
+        this._display.innerHTML = this._chars.map(item => {
+          if (!item.encrypted) return this._escape(item.char);
+          return item.char === ' ' ? ' ' : `<span class="rev">${this._escape(item.char)}</span>`;
+        }).join('');
       }
     }, this._speed);
   }
@@ -133,10 +150,26 @@ class DecryptedText extends HTMLElement {
       this._interval = null;
     }
     this._isAnimating = false;
-    // reset to plain text when not animating (keeps revealed text visible)
+    // reset to plain (unrevealed) for encrypted segments when not animated (hover) and not yet viewed
     if (!this._hasAnimated && (this._animateOn === 'hover' || this._animateOn === 'both')) {
       this._revealed = new Set();
       this._renderScrambled();
+    }
+  }
+
+  _parseTextForBrackets() {
+    this._chars = [];
+    this._encryptedIndices = [];
+    const s = this._text || '';
+    let inBracket = false;
+    for (let i = 0; i < s.length; i++) {
+      const ch = s[i];
+      if (ch === '[') { inBracket = true; continue; }
+      if (ch === ']') { inBracket = false; continue; }
+      const encrypted = inBracket;
+      const idx = this._chars.length;
+      this._chars.push({ char: ch, encrypted });
+      if (encrypted) this._encryptedIndices.push(idx);
     }
   }
 }
