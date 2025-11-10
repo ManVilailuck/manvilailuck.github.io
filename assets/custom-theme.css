@@ -1,4 +1,100 @@
 :root{
+  --bg: #050608; /* main near-black */
+  --sidebar: #08090b; /* slightly different black for sidebar */
+  --panel: #0f1115; /* card/panel background */
+  --text: #f5f5f5; /* primary text */
+  --muted: #9ca3af; /* muted */
+  --accent: #7c5cff; /* brand accent */
+  --border: #1f2933; /* structural border */
+  --glass: rgba(255,255,255,0.02);
+  --card: #0f1115;
+  --revealed: #f5f5f5;
+  --encrypted: #86a0b3;
+}
+
+/* Base layout */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background:var(--bg);
+  color:var(--muted);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  display:flex;
+  gap:28px;
+  align-items:flex-start;
+  padding:20px;
+}
+
+/* Sidebar */
+.sidebar{
+  flex:0 0 340px;
+  max-width:360px;
+  min-width:260px;
+  background:var(--sidebar);
+  border:1px solid var(--border);
+  padding:28px 20px;
+  height:calc(100vh - 40px);
+  position:sticky;
+  top:20px;
+  align-self:flex-start;
+}
+
+.brand{margin-bottom:18px}
+.brand-mark{margin:0;font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;font-weight:700;letter-spacing:0.06em;color:var(--text);font-size:1.05rem}
+.brand-prefix{color:var(--accent);margin-right:4px}
+.brand-suffix{color:var(--text);opacity:0.98}
+.brand-role{margin:6px 0 10px;color:var(--muted);font-size:0.9rem}
+.brand-tagline{margin-top:8px;color:var(--muted);font-size:0.93rem}
+
+/* Nav */
+.nav{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.nav-link{display:block;padding:10px 8px;color:var(--muted);text-decoration:none;font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;text-transform:uppercase;letter-spacing:0.12em;font-size:0.92rem;border-left:3px solid transparent}
+.nav-link:hover{color:var(--text);border-left-color:var(--accent);background:linear-gradient(90deg, rgba(124,92,255,0.02), transparent)}
+
+.sidebar-actions{display:flex;gap:10px;margin-top:20px}
+.btn{display:inline-block;padding:10px 14px;border-radius:4px;border:1px solid var(--border);background:var(--panel);color:var(--text);text-decoration:none;font-weight:600}
+.btn.ghost{background:transparent;color:var(--muted);border:1px dashed rgba(255,255,255,0.03)}
+.btn.primary{background:linear-gradient(90deg,var(--accent),#6fb0ff);border:1px solid rgba(124,92,255,0.2);color:#061018}
+.btn.disabled{opacity:0.5;pointer-events:none}
+
+/* Main content */
+.main-content{flex:1 1 auto;min-width:0;padding:18px 28px;max-width:980px}
+.section{padding:48px 0;border-top:1px solid var(--border)}
+.section:first-of-type{border-top:0;padding-top:26px}
+.section-heading{margin:0 0 12px;font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;font-size:1.05rem;letter-spacing:0.14em;color:var(--text)}
+.lede{color:var(--muted);max-width:70ch}
+
+/* Cards grid */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:14px}
+.card{background:var(--card);border:1px solid var(--border);padding:16px;border-radius:6px;color:var(--muted);transition:transform 160ms ease, box-shadow 160ms ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(2,6,23,0.6);color:var(--text)}
+.card-title{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;color:var(--text);margin:0 0 8px}
+.tags{font-size:0.85rem;color:var(--muted);margin-top:10px}
+
+/* Spotify embed */
+.spotify-embed{margin-top:12px}
+.spotify-embed iframe{width:100%;border:0;min-height:80px}
+
+/* Stack chips */
+.stack-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 8px;font-family:"JetBrains Mono", ui-monospace, monospace;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.08em;border-radius:4px}
+
+/* Contact links */
+.contact-links{display:flex;gap:10px;margin-top:10px}
+
+/* DecryptedText host styling */
+decrypted-text{display:inline-block;font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;color:var(--text);text-transform:uppercase;letter-spacing:0.12em}
+
+/* Responsive */
+@media (max-width:920px){
+  body{flex-direction:column;padding:14px}
+  .sidebar{width:100%;height:auto;position:relative;top:auto}
+  .main-content{width:100%;padding:14px}
+}
+:root{
   --bg:#0b0f14; /* deep navy/black */
   --panel:#0f1720; /* slightly lighter */
   --muted:#9aa4b2;
