@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RSH_[research] — Man Vilailuck</title>
+    <link rel="stylesheet" crossorigin href="/assets/index-DscjKKw6.css">
+    <link rel="stylesheet" href="/assets/custom-theme.css">
+    <script type="module" src="/assets/decrypted-text.js" defer></script>
+  </head>
+  <body>
+    <aside class="sidebar" aria-label="Primary">
+      <div class="brand">
+        <h1 class="brand-mark">
+          <span class="brand-prefix">VIL_</span>
+          <span class="brand-suffix">[manvilailuck]</span>
+        </h1>
+        <p class="brand-role">AI · data · product</p>
+
+        <div class="brand-tagline">
+          <decrypted-text
+            text="Research on robust ML, optimization, and trustworthy systems."
+            animate-on="view"
+            reveal-direction="center"
+            speed="45"
+            max-iterations="24">
+          </decrypted-text>
+        </div>
+      </div>
+
+      <nav class="nav" role="navigation" aria-label="Site">
+        <a href="index.html" class="nav-link"><decrypted-text text="HME_[home]" animate-on="hover" speed="35"></decrypted-text></a>
+        <a href="now.html" class="nav-link"><decrypted-text text="NOW_[now]" animate-on="hover" speed="35"></decrypted-text></a>
+        <a href="projects.html" class="nav-link"><decrypted-text text="PRJ_[projects]" animate-on="hover" speed="35"></decrypted-text></a>
+        <a href="research.html" class="nav-link"><decrypted-text text="RSH_[research]" animate-on="hover" speed="35"></decrypted-text></a>
+        <a href="stack.html" class="nav-link"><decrypted-text text="STK_[stack]" animate-on="hover" speed="35"></decrypted-text></a>
+        <a href="resume.html" class="nav-link"><decrypted-text text="RSM_[resume]" animate-on="hover" speed="35"></decrypted-text></a>
+        <a href="contact.html" class="nav-link"><decrypted-text text="CNT_[contact]" animate-on="hover" speed="35"></decrypted-text></a>
+      </nav>
+
+      <div class="sidebar-actions">
+        <a class="btn primary" href="mailto:manchailuck@gmail.com">Email me</a>
+        <a class="btn ghost" href="projects.html">Projects</a>
+      </div>
+    </aside>
+
+    <main class="main-content" role="main">
+      <section class="section">
+        <h2 class="section-heading"><decrypted-text text="RSH_[research]" animate-on="view"></decrypted-text></h2>
+
+        <p class="lede">My research focuses on systems and methods that make deployed ML systems reliable, interpretable, and aligned with institutional constraints. I approach problems that combine algorithms, infrastructure, and social context.</p>
+
+        <h3>Research interests</h3>
+        <ul>
+          <li><strong>Robust & Retrieval-Augmented ML Systems</strong>: Scalable, uncertainty-aware LLM and RAG pipelines; retrieval quality, latency, and failure-mode analysis for mission-critical applications.</li>
+
+          <li><strong>Optimization & Stochastic Modeling for Critical Infrastructure</strong>: Optimization, simulation, and stochastic decision-making for communication networks, mobility systems, and public services under uncertainty.</li>
+
+          <li><strong>Trustworthy Sociotechnical Systems</strong>: Fairness, accountability, and transparency in algorithmic systems operating within institutions and regulated settings.</li>
+
+          <li><strong>Human–AI Interaction</strong>: Interfaces and oversight mechanisms for non-expert operators; human trust calibration and hybrid decision-making in operational workflows.</li>
+
+          <li><strong>Causal Inference for Platforms & Policy</strong>: Causal modeling and experimentation to evaluate platform design, incentives, and policy interventions at scale.</li>
+
+          <li><strong>AI Safety & Reliability</strong>: Robustness, uncertainty quantification, and error mitigation for ML systems deployed under resource and data constraints.</li>
+        </ul>
+
+        <h3>Approach</h3>
+        <p>My methodology combines formal modeling (optimization, stochastic processes), empirical evaluation (experiments, ablation, statistical analysis), and sociotechnical critique (policy analysis, ethical frameworks). I aim to produce results that inform both research and practice.</p>
+
+      </section>
+    </main>
+
+    <script>
+      (function(){
+        const path = location.pathname.split('/').pop() || 'research.html';
+        document.querySelectorAll('.nav-link').forEach(a=>{ if (a.getAttribute('href') === path) a.classList.add('active'); });
+      })();
+    </script>
+  </body>
+</html>

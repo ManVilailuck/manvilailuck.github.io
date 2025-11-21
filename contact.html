@@ -18,33 +18,42 @@
         <a href="index.html" class="nav-link"> <decrypted-text text="HME_[home]" animate-on="hover"></decrypted-text></a>
         <a href="now.html" class="nav-link"> <decrypted-text text="NOW_[now]" animate-on="hover"></decrypted-text></a>
         <a href="projects.html" class="nav-link"> <decrypted-text text="PRJ_[projects]" animate-on="hover"></decrypted-text></a>
-        <a href="photography.html" class="nav-link"> <decrypted-text text="PHO_[photography]" animate-on="hover"></decrypted-text></a>
-        <a href="blog.html" class="nav-link"> <decrypted-text text="BLG_[blog]" animate-on="hover"></decrypted-text></a>
+        <a href="research.html" class="nav-link"> <decrypted-text text="RSH_[research]" animate-on="hover"></decrypted-text></a>
         <a href="stack.html" class="nav-link"> <decrypted-text text="STK_[stack]" animate-on="hover"></decrypted-text></a>
         <a href="resume.html" class="nav-link"> <decrypted-text text="RSM_[resume]" animate-on="hover"></decrypted-text></a>
         <a href="contact.html" class="nav-link"> <decrypted-text text="CNT_[contact]" animate-on="hover"></decrypted-text></a>
       </nav>
       <div class="sidebar-actions">
-        <a class="btn primary" href="mailto:man.vilailuck@gmail.com">Email me</a>
-        <a class="btn ghost" href="https://twitter.com/yourhandle">Twitter</a>
+        <a class="btn primary" href="mailto:manchailuck@gmail.com">Email me</a>
+        <a class="btn ghost" href="https://linkedin.com/in/chaichanok-vilailuck">LinkedIn</a>
       </div>
     </aside>
 
     <main class="main-content" role="main">
       <section class="section">
         <h2 class="section-heading"><decrypted-text text="CNT_[contact]" animate-on="view"></decrypted-text></h2>
-        <p class="lede">For work inquiries & collaborations — reach out via email.</p>
+        <p class="lede">For research inquiries and PhD applications, contact me via email or LinkedIn. I am based in Bangkok, Thailand.</p>
         <div class="contact-cards">
           <div class="card">
             <h3>Email</h3>
-            <p><a href="mailto:man.vilailuck@gmail.com">man.vilailuck@gmail.com</a></p>
+            <p><a href="mailto:manchailuck@gmail.com">manchailuck@gmail.com</a></p>
           </div>
           <div class="card">
-            <h3>Social</h3>
-            <p><a href="https://twitter.com/yourhandle">@yourhandle</a></p>
+            <h3>LinkedIn</h3>
+            <p><a href="https://linkedin.com/in/chaichanok-vilailuck">linkedin.com/in/chaichanok-vilailuck</a></p>
+          </div>
+          <div class="card">
+            <h3>Website</h3>
+            <p><a href="https://manvilailuck.github.io/">manvilailuck.github.io</a></p>
           </div>
         </div>
   </section>
+    <script>
+      (function(){
+        const path = location.pathname.split('/').pop() || 'contact.html';
+        document.querySelectorAll('.nav-link').forEach(a=>{ if (a.getAttribute('href') === path) a.classList.add('active'); });
+      })();
+    </script>
     </main>
   </body>
 </html>
