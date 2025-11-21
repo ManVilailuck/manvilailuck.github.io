@@ -14,6 +14,12 @@
   --encrypted: #4b6fbf;
 }
 
+/* Expose decrypted-text color tokens so the component's shadow DOM matches theme */
+:root{
+  --decrypted-revealed-color: var(--revealed);
+  --decrypted-encrypted-color: var(--encrypted);
+}
+
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
