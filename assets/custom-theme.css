@@ -1,3 +1,134 @@
+/* Clean white theme with blue accents and hover behaviors */
+:root{
+  --bg: #ffffff;
+  --sidebar: #ffffff;
+  --panel: #f8fafc;
+  --card: #ffffff;
+  --text: #0f1720;
+  --revealed: #0f1720;
+  --muted: #475569;
+  --accent: #1e40af; /* deep blue */
+  --accent-rgb: 30,64,175; /* for rgba helpers */
+  --border: #e6eef8;
+  --glass: rgba(15,23,32,0.03);
+  --encrypted: #4b6fbf;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background:var(--bg);
+  color:var(--muted);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  display:flex;
+  gap:28px;
+  align-items:flex-start;
+  padding:20px;
+}
+
+/* Sidebar */
+.sidebar{
+  flex:0 0 340px;
+  max-width:360px;
+  min-width:260px;
+  background:var(--sidebar);
+  border:1px solid var(--border);
+  padding:28px 20px;
+  height:calc(100vh - 40px);
+  position:sticky;
+  top:20px;
+  align-self:flex-start;
+}
+
+.brand{margin-bottom:18px}
+.brand-mark{margin:0;font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;font-weight:700;letter-spacing:0.06em;color:var(--text);font-size:1.05rem}
+.brand-prefix{color:var(--accent);margin-right:4px}
+.brand-suffix{color:var(--text);opacity:0.98}
+.brand-role{margin:6px 0 10px;color:var(--muted);font-size:0.9rem}
+.brand-tagline{margin-top:8px;color:var(--muted);font-size:0.93rem}
+
+/* Nav */
+.nav{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.nav-link{display:block;padding:10px 8px;color:var(--muted);text-decoration:none;font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;text-transform:uppercase;letter-spacing:0.12em;font-size:0.92rem;border-left:3px solid transparent}
+.nav-link:hover{color:var(--text);border-left-color:var(--accent);background:linear-gradient(90deg, rgba(var(--accent-rgb),0.03), transparent)}
+.nav-link.active{color:var(--text);border-left-color:var(--accent);font-weight:700}
+.nav-link decrypted-text, .nav-link decrypted-text * { pointer-events: none; }
+
+.sidebar-actions{display:flex;gap:10px;margin-top:20px}
+.btn{display:inline-block;padding:10px 14px;border-radius:4px;border:1px solid var(--border);background:var(--panel);color:var(--text);text-decoration:none;font-weight:600}
+.btn.ghost{background:transparent;color:var(--muted);border:1px dashed rgba(15,23,32,0.04)}
+.btn.primary{background:linear-gradient(90deg,var(--accent),#4fc3f7);border:1px solid rgba(var(--accent-rgb),0.12);color:#fff}
+.btn.disabled{opacity:0.5;pointer-events:none}
+
+/* Main content */
+.main-content{flex:1 1 auto;min-width:0;padding:18px 28px;max-width:980px}
+.section{padding:48px 0;border-top:1px solid var(--border);transition:background 160ms ease,border-color 160ms ease}
+.section:hover{background:rgba(var(--accent-rgb),0.03)}
+.section:first-of-type{border-top:0;padding-top:26px}
+.section-heading{margin:0 0 12px;font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;font-size:1.05rem;letter-spacing:0.04em;color:var(--text)}
+.lede{color:var(--muted);max-width:70ch}
+
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:14px}
+.card{background:var(--card);border:1px solid var(--border);padding:16px;border-radius:8px;color:var(--muted);transition:transform 160ms ease, box-shadow 160ms ease, border-color 180ms ease}
+.card:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(var(--accent-rgb),0.08);border-color:var(--accent);color:var(--text)}
+.card-title{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;color:var(--text);margin:0 0 8px}
+.tags{font-size:0.85rem;color:var(--muted);margin-top:10px}
+
+.spotify-embed{margin-top:12px}
+.spotify-embed iframe{width:100%;border:0;min-height:80px}
+
+.stack-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 8px;font-family:"JetBrains Mono", ui-monospace, monospace;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.08em;border-radius:4px}
+
+.contact-links{display:flex;gap:10px;margin-top:10px}
+
+decrypted-text{display:inline-block;font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;color:var(--text);letter-spacing:0.01em}
+
+@media (max-width:920px){
+  body{flex-direction:column;padding:14px}
+  .sidebar{width:100%;height:auto;position:relative;top:auto}
+  .main-content{width:100%;padding:14px}
+}
+
+.body-layout{color:var(--muted);font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial}
+
+body{display:flex;align-items:flex-start;gap:28px;min-height:100vh;padding:28px;background:var(--bg);color:var(--muted);font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial}
+
+.sidebar{flex:0 0 340px;max-width:360px}
+.main-content{flex:1 1 auto;min-width:0;padding:32px 40px}
+
+.container{max-width:880px;margin:0;background:transparent}
+
+.header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#4fc3f7);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.05rem}
+.title{font-size:1.6rem;color:var(--revealed);font-weight:700}
+.subtitle{color:var(--muted);font-size:0.95rem}
+
+.card{border-radius:12px;padding:18px;margin-bottom:18px}
+
+.actions{display:flex;gap:12px;align-items:center}
+.btn{background:var(--panel);color:var(--revealed);padding:8px 14px;border-radius:10px;border:1px solid rgba(2,6,23,0.04);cursor:pointer}
+.btn.secondary{background:transparent;color:var(--muted);border:1px solid rgba(2,6,23,0.03)}
+
+decrypted-text{font-size:1.04rem}
+.decrypted-display .enc{color:var(--encrypted);opacity:0.92}
+.decrypted-display .rev{color:var(--revealed);font-weight:600}
+
+.sidebar .card{background:linear-gradient(180deg, rgba(2,6,23,0.01), rgba(2,6,23,0.005));}
+.main-content h1, .main-content h2, .main-content h3{color:var(--revealed)}
+
+@media (max-width:900px){
+  body{flex-direction:column;padding:18px}
+  .sidebar{width:100%;flex:none}
+  .main-content{width:100%;padding:18px}
+}
+
+.lead{font-size:1.05rem;color:var(--muted)}
+
+@media (max-width:600px){.title{font-size:1.25rem}.header{gap:10px}}
 :root{
   --bg: #050608; /* main near-black */
   --sidebar: #08090b; /* slightly different black for sidebar */
