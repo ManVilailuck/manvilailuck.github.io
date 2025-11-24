@@ -70,10 +70,19 @@
 
   .topbar .brand{margin:0}
   .topbar .brand-tagline{margin-left:8px}
-  .topbar .nav{display:flex;flex-direction:row;gap:10px;margin-top:0}
-  .topbar .nav-link{display:inline-block;padding:8px 10px;border-left:0}
+  /* Two-box topbar layout: brand box on the left, nav+actions in a flexible right box */
+  .brand-box{display:flex;flex-direction:row;align-items:center;gap:12px;padding:8px 12px;border-radius:10px;background:var(--panel);border:1px solid var(--border);min-width:180px;max-width:360px}
+  .topbar .brand{margin:0}
+  .topbar .brand-tagline{margin-left:8px}
+  .nav-area{display:flex;align-items:center;gap:12px;flex:1;min-width:0;padding:6px 10px;border-radius:10px;background:var(--panel);border:1px solid var(--border)}
+  .topbar .nav{display:flex;flex-direction:row;gap:10px;margin-top:0;flex:1;overflow:auto}
+  .topbar .nav-link{display:inline-block;padding:8px 10px;border-left:0;white-space:nowrap}
   .topbar .nav-link:hover{background:linear-gradient(180deg, rgba(30,64,175,0.04), transparent);border-left:0}
-  .topbar .sidebar-actions{margin-left:auto;display:flex;gap:8px}
+  .topbar .sidebar-actions{margin-left:12px;display:flex;gap:8px;flex:0 0 auto}
+
+  /* Ensure nav items don't overlap brand; allow horizontal scroll if many links */
+  .nav::-webkit-scrollbar{height:6px}
+  .nav{ -webkit-overflow-scrolling:touch }
 
   .brand{margin-bottom:18px}
   .brand-mark{margin:0;font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;font-weight:700;letter-spacing:0.06em;color:var(--text);font-size:1.05rem}
