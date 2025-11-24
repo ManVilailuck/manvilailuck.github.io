@@ -336,3 +336,30 @@ body{padding-top:calc(var(--topbar-height) + 20px) !important}
   body{padding-top:18px !important}
   .brand-tagline{display:none}
 }
+
+/* Strong layout override: use grid to guarantee three distinct areas and prevent overlap */
+.topbar{
+  display:grid !important;
+  grid-template-columns: auto 1fr auto !important;
+  align-items:center !important;
+  gap:16px !important;
+  padding:12px 20px !important;
+  height:var(--topbar-height) !important;
+  background:var(--sidebar) !important;
+  border-bottom:1px solid var(--border) !important;
+}
+
+.topbar .brand-box{grid-column:1;display:flex;align-items:center;gap:12px;min-width:120px;max-width:360px;overflow:hidden;padding:6px 10px;border-radius:8px;background:var(--panel);border:1px solid var(--border)}
+.topbar .nav-area{grid-column:2;display:flex;align-items:center;justify-content:center;min-width:0;overflow:hidden;padding:0 8px}
+.topbar .nav{display:flex;gap:12px;align-items:center;justify-content:center;overflow:auto;white-space:nowrap}
+.topbar .sidebar-actions{grid-column:3;display:flex;align-items:center;gap:8px;justify-self:end}
+
+/* Ensure the main content can't be overlapped by the bar (strong override) */
+body{padding-top:calc(var(--topbar-height) + 20px) !important}
+
+@media (max-width:720px){
+  .topbar{display:flex !important;flex-direction:column;align-items:flex-start;height:auto;padding:10px}
+  .topbar .brand-box{width:100%;max-width:none}
+  .topbar .nav-area{width:100%;overflow:auto}
+  .topbar .sidebar-actions{width:100%;justify-content:flex-start}
+}
