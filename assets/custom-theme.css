@@ -320,9 +320,11 @@ decrypted-text{font-size:1.04rem;display:inline-block}
 }
 
 /* Ensure brand box and nav-area align within the fixed bar */
-.brand-box{height:100%;display:flex;align-items:center}
-.nav-area{height:100%;display:flex;align-items:center;gap:12px}
-.topbar .nav{height:100%;align-items:center}
+.brand-box{height:100%;display:flex;align-items:center;flex:0 0 auto;gap:12px;padding:6px 10px;border-radius:8px;min-width:0;max-width:420px;overflow:hidden}
+.brand-box .brand-mark{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.brand-box .brand-role{white-space:nowrap;opacity:0.9}
+.nav-area{height:100%;display:flex;align-items:center;gap:12px;flex:1;min-width:0;justify-content:flex-end}
+.topbar .nav{height:100%;align-items:center;flex:1;display:flex;justify-content:flex-end;gap:10px;overflow:auto}
 
 /* Push page content down so it isn't hidden under the fixed topbar */
 body{padding-top:calc(var(--topbar-height) + 20px) !important}
@@ -332,4 +334,5 @@ body{padding-top:calc(var(--topbar-height) + 20px) !important}
   :root{--topbar-height:auto}
   .topbar{position:relative;height:auto;flex-direction:column;align-items:flex-start;padding:10px}
   body{padding-top:18px !important}
+  .brand-tagline{display:none}
 }
