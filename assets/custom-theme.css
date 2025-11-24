@@ -143,6 +143,24 @@
   /* Make encrypted spans slightly smaller so revealed text feels stronger */
   .decrypted-display .enc{font-size:0.95em}
 
+/* High-specificity overrides to ensure a consistent light background
+   and to override any bundled dark-theme rules (from index-DscjKKw6.css).
+   These use !important to take precedence over the bundled stylesheet. */
+html, body, .body-layout, .container, .main-content {
+  background: var(--bg) !important;
+  color: var(--muted) !important;
+}
+
+/* Ensure sidebar and main content areas don't show a dark fill from vendor CSS */
+.sidebar, .main-content, .container { background: transparent !important; }
+
+/* Make sure decrypted-text revealed color is visible on light background */
+:root{ --decrypted-revealed-color: var(--revealed) !important; --decrypted-encrypted-color: var(--encrypted) !important }
+
+/* Prefer light color-scheme for browsers that support it */
+html { color-scheme: light; }
+
+
   /* Sidebar card visuals */
   .sidebar .card{background:linear-gradient(180deg, rgba(2,6,23,0.01), rgba(2,6,23,0.005));}
 
