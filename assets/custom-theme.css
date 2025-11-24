@@ -304,3 +304,32 @@ decrypted-text{font-size:1.04rem;display:inline-block}
 .lead{font-size:1.05rem;color:var(--muted)}
 
 @media (max-width:600px){.title{font-size:1.25rem}.header{gap:10px}}
+
+/* Make the topbar clearly visible and prevent content from hiding beneath it. */
+:root{ --topbar-height:72px }
+
+/* Fixed, simple top bar for easy visibility */
+.topbar{
+  position:fixed !important;
+  top:0;left:0;right:0;
+  height:var(--topbar-height);
+  display:flex;align-items:center;gap:18px;padding:12px 20px;
+  background:var(--sidebar);border-bottom:1px solid var(--border);
+  box-shadow:0 6px 20px rgba(2,6,23,0.06);
+  z-index:1000;
+}
+
+/* Ensure brand box and nav-area align within the fixed bar */
+.brand-box{height:100%;display:flex;align-items:center}
+.nav-area{height:100%;display:flex;align-items:center;gap:12px}
+.topbar .nav{height:100%;align-items:center}
+
+/* Push page content down so it isn't hidden under the fixed topbar */
+body{padding-top:calc(var(--topbar-height) + 20px) !important}
+
+/* Mobile: allow the topbar to stack and not be fixed to the viewport height */
+@media (max-width:720px){
+  :root{--topbar-height:auto}
+  .topbar{position:relative;height:auto;flex-direction:column;align-items:flex-start;padding:10px}
+  body{padding-top:18px !important}
+}
